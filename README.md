@@ -1,4 +1,4 @@
-### Hi there 👋
+### Whale hello there 🐳👋
 
 - 👨‍💻 I started programming a little over a year ago
 - 🎓 I'm currently studying softwaredevelopment
