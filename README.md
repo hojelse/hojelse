@@ -1,4 +1,4 @@
-# Whale hello there, I'm Kristoffer 🐳👋
+### Whale hello there, I'm Kristoffer 🐳👋
 
 > I love solving problems in visually engaging ways and find satisfaction in automating the boring stuff.
 
