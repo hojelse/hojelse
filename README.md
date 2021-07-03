@@ -11,8 +11,10 @@
 
 🧽 I am currently a pure pleasure-directed knowledge sponge soaking up everything from DevOps to React.js
 
-🔍 I am currently learning [D3.js](https://d3js.org/)
+🔍 I've recently learned some [Vue.js](https://vuejs.org) and [D3.js](https://d3js.org/) on a project SimCorp on NATS monitoring tool [/SimCorp/nats-topology-visualiser](https://github.com/SimCorp/nats-topology-visualiser)
 
+🌱 I am currently learning [Next.js](https://nextjs.org/) by building a site [/creative-nest/creative-nest](https://github.com/creative-nest/creative-nest)
+ which is also deployed with Docker and Kubernetes
 ### Say Hello
 
 [hello@hojelse.com](mailto:hello@hojelse.com) · [github.com/hojelse](https://github.com/hojelse) · [hojelse.com](https://hojelse.com)
