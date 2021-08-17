@@ -13,7 +13,7 @@
 
 🔍 I've recently gained experience with [Vue.js](https://vuejs.org) and [D3.js](https://d3js.org/) on a NATS monitoring tool in collaboration with SimCorp [/SimCorp/nats-topology-visualiser](https://github.com/SimCorp/nats-topology-visualiser)
 
-🌱 I am currently learning [Next.js](https://nextjs.org/) by building a site [/hojelse/creative-nest](https://github.com/hojelse/creative-nest)
+🌱 I am currently learning [Next.js](https://nextjs.org/) to build a company site [/hojelse/creative-nest](https://github.com/hojelse/creative-nest)
  which is also deployed with Docker and Kubernetes
 ### Say Hello
 
