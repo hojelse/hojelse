@@ -9,7 +9,7 @@
 
 🌍 I live in Denmark 🇩🇰
 
-🧽 I am currently a knowledge sponge soaking up everything from DevOps to React.js
+🧽 I am currently being the best knowledge sponge i can, soaking up everything from DevOps to React.js
 
 🔍 I've recently gained experience with [Vue.js](https://vuejs.org) and [D3.js](https://d3js.org/) on a NATS monitoring tool in collaboration with SimCorp [/SimCorp/nats-topology-visualiser](https://github.com/SimCorp/nats-topology-visualiser)
 
