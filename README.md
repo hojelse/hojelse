@@ -4,9 +4,7 @@
 
 🎨 I am a graphic designer turned coder
 
-📚 I study Software Development at [IT University of Copenhagen](https://itu.dk)
-
-🌍 I live in Denmark 🇩🇰
+📚 I am studying Software Development at [IT University of Copenhagen](https://itu.dk)
 
 🧽 I am currently being the best knowledge sponge i can, soaking up everything from DevOps to React.js
 
