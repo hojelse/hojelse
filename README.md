@@ -2,7 +2,7 @@
 
 > I love solving problems in visually engaging ways and find satisfaction in automating the boring stuff.
 
-🎨 I am a graphic designer turned coder
+🎨 I am a designer turned developer
 
 📚 I am studying Software Development at [IT University of Copenhagen](https://itu.dk)
 
