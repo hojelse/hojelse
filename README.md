@@ -6,10 +6,6 @@
 
 📚 I am studying Software Development at [IT University of Copenhagen](https://itu.dk)
 
-🧽 I am currently being the best knowledge sponge i can, soaking up everything from DevOps to React.js
-
-🔍 I've recently gained experience with [Vue.js](https://vuejs.org) and [D3.js](https://d3js.org/) on a NATS monitoring tool in collaboration with SimCorp [/SimCorp/nats-topology-visualiser](https://github.com/SimCorp/nats-topology-visualiser)
-
 ### Say Hello
 
-[hello@hojelse.com](mailto:hello@hojelse.com) · [github.com/hojelse](https://github.com/hojelse) · [hojelse.com](https://hojelse.com)
+[hello&commat;hojelse.com](mailto:hello@hojelse.com) &middot; [github.com/hojelse](https://github.com/hojelse) &middot; [hojelse.com](https://hojelse.com)
