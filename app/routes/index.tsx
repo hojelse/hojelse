@@ -114,7 +114,7 @@ const GetPinnedReposQuery = gql`
 `
 
 export const loader : LoaderFunction = async (params) => {
-  const pat = process.env["OCTOKIT_PAT"]
+  const pat = process.env["GITHUB_API_PAT"]
   
   const githubapi = new GraphQLClient(
     "https://api.github.com/graphql",
