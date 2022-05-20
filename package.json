@@ -16,7 +16,8 @@
     "graphql": "^16.4.0",
     "graphql-request": "^4.2.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.4.3",
@@ -24,6 +25,7 @@
     "@remix-run/serve": "^1.4.3",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
+    "@types/styled-components": "^5.1.25",
     "eslint": "^8.11.0",
     "typescript": "^4.5.5"
   },

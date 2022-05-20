@@ -1,6 +1,7 @@
-import { json, LoaderFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { GraphQLClient, gql } from "graphql-request";
+import { json, LoaderFunction } from "@remix-run/node"
+import { Link, useLoaderData } from "@remix-run/react"
+import { GraphQLClient, gql } from "graphql-request"
+import styled from "styled-components"
 
 interface Topic {
   name: string
@@ -30,6 +31,7 @@ interface Repository {
   nameWithOwner: string
   description: string
   stargazerCount: number
+  homepageUrl: URL
   openGraphImageUrl: URL
   primaryLanguage: Language
   latestRelease: Release
@@ -44,10 +46,11 @@ interface Repository {
 interface GetPinnedReposQueryInterface {
   user: {
     name: string
+    avatarUrl: URL
     url: URL
     bio: string
     login: string
-    status: UserStatus
+    status: UserStatus | null
     pinnedItems: {
       nodes: Repository[]
     }
@@ -59,6 +62,7 @@ const GetPinnedReposQuery = gql`
   {
     user(login: "hojelse") {
       name,
+      avatarUrl,
       url,
       bio,
       login,
@@ -76,6 +80,7 @@ const GetPinnedReposQuery = gql`
             name,
             description,
             stargazerCount,
+            homepageUrl,
             openGraphImageUrl,
             primaryLanguage {
               ... on Language {
@@ -93,7 +98,7 @@ const GetPinnedReposQuery = gql`
                 }
               }
             },
-            languages(first: 20) {
+            languages(first: 2) {
               nodes {
                 ... on Language {
                   name
@@ -119,75 +124,145 @@ export const loader : LoaderFunction = async (params) => {
   const githubapi = new GraphQLClient(
     "https://api.github.com/graphql",
     { headers: { Authorization: `bearer ${pat}` } }
-  );
+  )
 
-  const resp = await githubapi.request(GetPinnedReposQuery);
+  const resp = await githubapi.request(GetPinnedReposQuery)
 
   return json<GetPinnedReposQueryInterface>(resp)
 }
 
 export default function Index() {
-  const data = useLoaderData<GetPinnedReposQueryInterface>();
+  const data = useLoaderData<GetPinnedReposQueryInterface>()
+  const user = data.user
   const repos = data.user.pinnedItems.nodes
   console.dir(data)
 
   return (
-    <div>
-      <h1>{data.user.name}</h1>
+    <Page>
+      <UserImage src={user.avatarUrl.toString()} alt="" />
+      <h1>{user.name}</h1>
       <ul>
-        <li>bio: {data.user.bio}</li>
-        <li>login: {data.user.login}</li>
-        <li>url: {data.user.url}</li>
-        <li>status:</li>
-        <ul>
-          <li>emoji: {data.user.status.emoji}</li>
-          <li>message: {data.user.status.message}</li>
-        </ul>
-      </ul>
-      <h2>pinned repos:</h2>
-      <ul>
+        <li>{user.bio}</li>
+        <li>login: {user.login}</li>
+        <li>url: {user.url}</li>
         {
-          repos.map((repo) => {
-            return (
-              <li key={repo.name}>
-                name: {repo.name} 
-                <ul>
-                  <li>nameWithOwner: {repo.nameWithOwner}</li>
-                  <li>url: {repo.url}</li>
-                  <li>description: {repo.description}</li>
-                  <li>Stars: {repo.stargazerCount}</li>
-                  <li>repositoryTopics:</li>
-                  <ul>
-                    {
-                      repo.repositoryTopics.nodes.map((repoTopic) => {
-                        const topic = repoTopic.topic
-                        return (
-                          <li key={`${repo.name}${topic.name}`}>{topic.name}</li>
-                        )
-                      })
-                    }
-                  </ul>
-                  <li>languages:</li>
-                  <ul>
-                    {
-                      repo.languages.nodes.map((language) => {
-                        return (
-                          <li key={`${repo.name}${language.name}`}>{language.name}</li>
-                        )
-                      })
-                    }
-                  </ul>
-                  <li>latestRelease</li>
-                  <ul>
-                    <li>{repo.latestRelease.tagName}</li>
-                  </ul>
-                </ul>
-                
-              </li>
-            )
-          })
+          (user.status)
+          ? (
+            <>
+              <li>status:</li>
+              <ul>
+                <li>emoji: {user.status.emoji}</li>
+                <li>message: {user.status.message}</li>
+              </ul>
+            </>
+          )
+          : null
         }
       </ul>
-    </div>
-  );
+      <h2>GitHub projects</h2>
+      <StyledA href={user.url.toString()}>@hojelse</StyledA>
+      <PinnedItemsGrid>
+        {
+          repos.map((repo) => (
+            <PinnedItem key={repo.nameWithOwner}>
+              <RepoImage src={repo.openGraphImageUrl.toString()} alt="" />
+              <h3>{repo.name}</h3>
+              <p><i>{repo.nameWithOwner}</i></p>
+              <p>{repo.description}</p>
+              <ul>
+                <li>topics:</li>
+                <RepositoryTopics>
+                  {
+                    repo.repositoryTopics.nodes.map((repoTopic) => {
+                      const topic = repoTopic.topic
+                      return (
+                        <RepositoryTopicDiv key={`${repo.nameWithOwner}${topic.name}`}>
+                          {topic.name}
+                        </RepositoryTopicDiv>
+                      )
+                    })
+                  }
+                </RepositoryTopics>
+                <li>Stars: {repo.stargazerCount}</li>
+                <li>languages:</li>
+                <RepositoryTopics>
+                  {
+                    repo.languages.nodes.map((language) => (
+                      <RepositoryTopicDiv key={`${repo.nameWithOwner}${language.name}`}>
+                        {language.name}
+                      </RepositoryTopicDiv>
+                    ))
+                  }
+                </RepositoryTopics>
+              </ul>
+              <StyledA href={repo.url.toString()}>Source code</StyledA>
+              <StyledA href={repo.homepageUrl.toString()}>Live Demo</StyledA>
+            </PinnedItem>
+          ))
+        }
+      </PinnedItemsGrid>
+    </Page>
+  )
 }
+
+const UserImage = styled.img`
+  height: 150px;
+  border-radius: 50%;
+`
+
+const RepoImage = styled.img`
+  height: 100px;
+`
+
+const StyledA = styled.a`
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(0, 0%, 20%);
+
+  &:link {
+    background-color: hsl(0, 100%, 20%);
+  }
+
+  &:visited {
+    background-color: hsl(100, 100%, 20%);
+  }
+
+  &:hover {
+    background-color: hsl(150, 100%, 20%);
+  }
+
+  &:focus {
+    background-color: hsl(200, 100%, 20%);
+  }
+
+  &:active {
+    background-color: hsl(300, 100%, 20%);
+  }
+`
+
+const Page = styled.div`
+`
+
+const PinnedItemsGrid = styled.div`
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding: 0;
+`
+
+const PinnedItem = styled.div`
+  background-color: hsl(0, 0%, 95%);
+`
+
+const RepositoryTopics = styled.div`
+  display: flex;
+  gap: 5px;
+  flex-direction: row;
+  flex-wrap: wrap;
+`
+
+const RepositoryTopicDiv = styled.div`
+  background-color: hsl(0, 0%, 0%);
+  color: hsl(0, 0%, 100%);
+  border-radius: 100000px;
+  padding: 0 10px;
+`
