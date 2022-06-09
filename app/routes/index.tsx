@@ -113,55 +113,55 @@ export default function Index() {
         {
           repos.map((repo) => {
             if (repo == null) return null
-            repo = repo as Repository
-
-            const repoNameWithOwner = repo.nameWithOwner
-            const repoTopics = repo.repositoryTopics.nodes ?? []
-            const repoLanguages = repo.languages?.nodes ?? []
-            return (
-              <PinnedItem key={repoNameWithOwner}>
-                <RepoImage src={repo.openGraphImageUrl.toString()} alt="" />
-                <h3>{repo.name}</h3>
-                <p><i>{repoNameWithOwner}</i></p>
-                <p>{repo.description}</p>
-                <ul>
-                  <li>topics:</li>
-                  <RepositoryTopics>
-                    {
-                      repoTopics.map((repoTopic) => {
-                        if (repoTopic == null) return null
-                        const topic = repoTopic.topic
-                        return (
-                          <RepositoryTopicDiv key={`${repoNameWithOwner}${topic.name}`}>
-                            {topic.name}
-                          </RepositoryTopicDiv>
-                        )
-                      })
-                    }
-                  </RepositoryTopics>
-                  <li>Stars: {repo.stargazerCount}</li>
-                  <li>languages:</li>
-                  <RepositoryTopics>
-                    {
-                      repoLanguages.map((language) => {
-                        if (language == null) return null
-                        return (
-                          <RepositoryTopicDiv key={`${repoNameWithOwner}${language.name}`}>
-                            {language.name}
-                          </RepositoryTopicDiv>
-                        )
-                      })
-                    }
-                  </RepositoryTopics>
-                </ul>
-                <StyledA href={repo.url.toString()}>Source code</StyledA>
-                <StyledA href={repo.homepageUrl.toString()}>Live Demo</StyledA>
-              </PinnedItem>
-            )
+            return CreatePinnedItem(repo as Repository)
           })
         }
       </PinnedItemsGrid>
     </Page>
+  )
+}
+
+function CreatePinnedItem(repo: Repository) {
+  const repoNameWithOwner = repo.nameWithOwner
+  const repoTopics = repo.repositoryTopics.nodes ?? []
+  const repoLanguages = repo.languages?.nodes ?? []
+  return (
+    <PinnedItem key={repoNameWithOwner}>
+      <RepoImage src={repo.openGraphImageUrl.toString()} alt="" />
+      <h3>{repo.name}</h3>
+      <p><i>{repoNameWithOwner}</i></p>
+      <p>{repo.description}</p>
+      <ul>
+        <li>topics:</li>
+        <RepositoryTopics>
+          {repoTopics.map((repoTopic) => {
+            if (repoTopic == null) return null
+            const topic = repoTopic.topic
+            return (
+              <RepositoryTopicDiv key={`${repoNameWithOwner}${topic.name}`}>
+                {topic.name}
+              </RepositoryTopicDiv>
+            )
+          })}
+        </RepositoryTopics>
+        <li>Stars: {repo.stargazerCount}</li>
+        <li>languages:</li>
+        <RepositoryTopics>
+          {
+            repoLanguages.map((language) => {
+              if (language == null) return null
+              return (
+                <RepositoryTopicDiv key={`${repoNameWithOwner}${language.name}`}>
+                  {language.name}
+                </RepositoryTopicDiv>
+              )
+            })
+          }
+        </RepositoryTopics>
+      </ul>
+      <StyledA href={repo.url.toString()}>Source code</StyledA>
+      <StyledA href={repo.homepageUrl.toString()}>Live Demo</StyledA>
+    </PinnedItem>
   )
 }
 
