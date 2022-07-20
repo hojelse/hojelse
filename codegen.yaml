@@ -5,7 +5,8 @@ schema:
       headers:
         Authorization: "bearer ${API_TOKEN}"
 documents:
-  - './app/**/*.tsx'
+  - './pages/**/*.tsx'
+  - './components/**/*.tsx'
 generates:
   graphql/generated.ts:
     plugins:
