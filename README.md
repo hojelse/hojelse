@@ -4,7 +4,7 @@
 
 🎨 I am a designer turned developer
 
-📚 I am studying Software Development at [IT University of Copenhagen](https://itu.dk)
+📚 I am studying Computer Science at [IT University of Copenhagen](https://itu.dk)
 
 ### Say Hello
 
