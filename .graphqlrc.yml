@@ -1,3 +1,0 @@
-# Config for vs code extension https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql
-schema: 'graphql/graphql.schema.json'
-documents: 'src/**/*.{graphql,js,ts,jsx,tsx}'
