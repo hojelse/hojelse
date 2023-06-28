@@ -52,7 +52,7 @@ type DataType = {
 }
 
 export default async function ApiPage() {
-  const data: DataType = await fetch(
+  const res = await fetch(
     "https://api.github.com/graphql",
     {
       method: "POST",
@@ -64,7 +64,12 @@ export default async function ApiPage() {
         "Authorization": "bearer " + process.env.GITHUB_API_PAT
       },
     }
-  ).then((res) => res.json());
+  )
+
+  if (!res.ok)
+    throw new Error("Failed to fetch from github api")
+
+  const data: DataType = await res.json();
 
   const githubProjects = data.data.user.pinnedItems.nodes.map(x => {
     return {
