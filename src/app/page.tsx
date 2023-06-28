@@ -63,7 +63,8 @@ export default async function ApiPage() {
         "Content-Type": "application/json",
         "Authorization": "bearer " + process.env.GITHUB_API_PAT
       },
-    }
+      next: { revalidate: 60 }
+    },
   )
 
   if (!res.ok)

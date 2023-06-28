@@ -10,7 +10,7 @@
 .titlebar {
   display: flex;
   grid-auto-flow: column;
-  align-items: end;
+  align-items: flex-end;
   gap: 0.6em;
 }
 
@@ -22,7 +22,6 @@
 
 .title {
   font-size: 0.9em;
-  width: max-content;
 }
 
 .description {
