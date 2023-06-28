@@ -1,0 +1,35 @@
+:root {
+  --color-links: lch(30% 100% 220);
+  --color-border: lch(80% 0% 0);
+  --color-icon: lch(30% 0% 0);
+}
+
+.GitHubProjects {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: 1fr 1fr;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-links);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.svgwrapper {
+  display: grid;
+  place-content: center;
+}
+
+.githubsvg > svg {
+  height: 17px;
+  width: 17px;
+  fill: var(--color-icon);
+}
+
+.pb {
+  border-radius: 1000000px;
+}

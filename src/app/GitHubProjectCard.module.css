@@ -1,0 +1,51 @@
+.container {
+  border: 1px solid var(--color-border);
+  border-radius: 0.5em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+}
+
+.titlebar {
+  display: flex;
+  grid-auto-flow: column;
+  align-items: end;
+  gap: 0.6em;
+}
+
+.metabar {
+  display: flex;
+  grid-auto-flow: column;
+  gap: 0.6em;
+}
+
+.title {
+  font-size: 0.9em;
+  width: max-content;
+}
+
+.description {
+  font-size: 0.7em;
+  flex-grow: 1;
+}
+
+.year {
+  border: 1px solid var(--color-border);
+  border-radius: 100000px;
+  width: min-content;
+  padding: 0.25em 0.5em;
+  font-size: 0.7em;
+}
+
+.lang {
+  font-size: 0.7em;
+}
+
+.stars {
+  font-size: 0.7em;
+}
+
+.forks {
+  font-size: 0.8em;
+}
