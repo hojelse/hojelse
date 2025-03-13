@@ -4,7 +4,7 @@
 
 🎨 I am a designer turned developer
 
-📚 I Computer Science graduate from [IT University of Copenhagen](https://itu.dk)
+📚 I am a Computer Science graduate from [IT University of Copenhagen](https://itu.dk)
 
 ### Say Hello
 
